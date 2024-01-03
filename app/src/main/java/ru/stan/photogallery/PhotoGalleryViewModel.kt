@@ -10,21 +10,28 @@ import kotlinx.coroutines.launch
 
 private const val TAG = "PhotoGalleryViewModel"
 
-class PhotoGalleryViewModel : ViewModel() {
+class PhotoGalleryViewModel() : ViewModel() {
     private val photoRepository = PhotoRepository()
 
 
     private val _galleryItems: MutableStateFlow<List<GalleryItem>> =
-    MutableStateFlow(emptyList())
+        MutableStateFlow(emptyList())
     val galleryItems: StateFlow<List<GalleryItem>>
         get() = _galleryItems.asStateFlow()
 
+    private var currentPage = 1
     init {
+        loadNextPage()
+    }
+    fun loadNextPage(){
         viewModelScope.launch {
             try {
-                val items = photoRepository.fetchPhotos()
+                val items = photoRepository.fetchPhotos(currentPage)
                 Log.d(TAG, "Items received: $items")
-                _galleryItems.value = items
+                val currentItems = _galleryItems.value.toMutableList()
+                currentItems.addAll(items)
+                _galleryItems.value = currentItems
+                currentPage++
             } catch (ex: Exception) {
                 Log.e(TAG, "Failed to fetch gallery items", ex)
             }
