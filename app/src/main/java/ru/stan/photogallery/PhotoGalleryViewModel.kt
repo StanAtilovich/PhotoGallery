@@ -26,12 +26,13 @@ class PhotoGalleryViewModel() : ViewModel() {
     fun loadNextPage(){
         viewModelScope.launch {
             try {
-                val items = photoRepository.fetchPhotos(currentPage)
+                val items = photoRepository.searchPhotos("planets")//fetchPhotos(currentPage)
                 Log.d(TAG, "Items received: $items")
-                val currentItems = _galleryItems.value.toMutableList()
-                currentItems.addAll(items)
-                _galleryItems.value = currentItems
-                currentPage++
+//                val currentItems = _galleryItems.value.toMutableList()
+//                currentItems.addAll(items)
+//                _galleryItems.value = currentItems
+//                currentPage++
+                _galleryItems.value = items
             } catch (ex: Exception) {
                 Log.e(TAG, "Failed to fetch gallery items", ex)
             }

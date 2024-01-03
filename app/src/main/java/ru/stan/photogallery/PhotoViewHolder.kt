@@ -10,7 +10,7 @@ import ru.stan.photogallery.databinding.ListItemGalleryBinding
 
 
 class PhotoViewHolder(
-    private val binding: ListItemGalleryBinding
+private val binding: ListItemGalleryBinding
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(galleryItem: GalleryItem) {
         binding.itemImageView.load(galleryItem.url){
@@ -41,6 +41,3 @@ class GalleryItemDiffCallback : DiffUtil.ItemCallback<GalleryItem>() {
         return oldItem == newItem
     }
 }
-
-
-
