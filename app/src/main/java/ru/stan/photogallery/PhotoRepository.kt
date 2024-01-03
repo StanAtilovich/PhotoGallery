@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 
-class PhotoRepository {
+class PhotoRepository() {
     private val flickrApi: FlickrApi
 
 
@@ -21,6 +21,6 @@ class PhotoRepository {
         flickrApi = retrofit.create(FlickrApi::class.java)
     }
 
-    suspend fun fetchPhotos(): List<GalleryItem> =
-        flickrApi.fetchPhotos().photos.galleryItems
+    suspend fun fetchPhotos(page: Int): List<GalleryItem> =
+        flickrApi.fetchPhotos(page).photos.galleryItems
 }
