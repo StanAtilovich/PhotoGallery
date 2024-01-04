@@ -45,6 +45,7 @@ class PhotoGalleryViewModel : ViewModel() {
         viewModelScope.launch { preferencesRepository.setStoredQuery(query) }
     }
 
+
     private suspend fun fetchGalleryItems(query: String): List<GalleryItem> {
         return if (query.isNotEmpty()) {
             photoRepository.searchPhotos(query)
