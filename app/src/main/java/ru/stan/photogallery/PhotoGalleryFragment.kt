@@ -95,7 +95,8 @@ class PhotoGalleryFragment : Fragment() {
                 photoGalleryViewModel.setQuery(query ?: "")
 
                 // Скрыть клавиатуру после отправки запроса
-                val inputMethodManager = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                val inputMethodManager =
+                    requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 inputMethodManager.hideSoftInputFromWindow(searchView?.windowToken, 0)
 
                 return true
@@ -115,6 +116,7 @@ class PhotoGalleryFragment : Fragment() {
                 photoGalleryViewModel.setQuery("")
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
