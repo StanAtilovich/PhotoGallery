@@ -1,7 +1,6 @@
-package ru.stan.photogallery
+package ru.stan.photogallery.api
 
 import com.squareup.moshi.JsonClass
-
 
 @JsonClass(generateAdapter = true)
 data class FlickrResponse(
