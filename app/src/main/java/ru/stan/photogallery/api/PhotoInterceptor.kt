@@ -4,13 +4,12 @@ package ru.stan.photogallery.api
 import okhttp3.HttpUrl
 import okhttp3.Interceptor
 import okhttp3.Request
-import retrofit2.Response
-
+import okhttp3.Response
 
 private const val API_KEY = "a2ed5118fafd65ef9852df5bcb758bd6"
 
 class PhotoInterceptor : Interceptor {
-    override fun intercept(chain: Interceptor.Chain): okhttp3.Response {
+    override fun intercept(chain: Interceptor.Chain): Response {
         val originalRequest: Request = chain.request()
 
         val newUrl: HttpUrl = originalRequest.url.newBuilder()
